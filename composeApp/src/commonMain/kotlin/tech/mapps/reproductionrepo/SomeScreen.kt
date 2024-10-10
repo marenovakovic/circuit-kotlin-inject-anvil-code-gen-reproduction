@@ -19,31 +19,31 @@ import software.amazon.lastmile.kotlin.inject.anvil.AppScope
 import tech.mapps.reproductionrepo.parcelize.CommonParcelize
 
 @CommonParcelize
-object ScreenA : Screen {
+object SomeScreen : Screen {
     sealed interface Event : CircuitUiEvent
 
     data class State(val eventSink: (Event) -> Unit) : CircuitUiState
 }
 
 @Inject
-@CircuitInject(ScreenA::class, AppScope::class)
-class ScreenAPresenter : Presenter<ScreenA.State> {
+@CircuitInject(SomeScreen::class, AppScope::class)
+class ScreenAPresenter : Presenter<SomeScreen.State> {
 
     @Composable
-    override fun present(): ScreenA.State = ScreenA.State {}
+    override fun present(): SomeScreen.State = SomeScreen.State {}
 }
 
 @OptIn(ExperimentalMaterial3Api::class)
-@CircuitInject(ScreenA::class, AppScope::class)
+@CircuitInject(SomeScreen::class, AppScope::class)
 @Composable
-fun CameraUi(
-    state: ScreenA.State,
+fun SomeScreenUi(
+    state: SomeScreen.State,
     modifier: Modifier = Modifier,
 ) {
     Scaffold(
         topBar = {
             CenterAlignedTopAppBar(
-                title = { Text(text = "ScreenA") },
+                title = { Text(text = "Some Screen") },
             )
         },
         content = { paddingValues ->
